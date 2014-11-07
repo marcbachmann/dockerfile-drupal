@@ -17,7 +17,7 @@ RUN \
   apt-get install -y curl nginx && \
   rm -rf /var/lib/apt/lists/* && \
   echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
-  chown -R www-data:www-data /var/lib/nginx 
+  chown -R www-data:www-data /var/lib/nginx
 
 EXPOSE 80
 ADD ./nginx.conf /etc/nginx/nginx.conf
