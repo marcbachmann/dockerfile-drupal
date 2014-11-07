@@ -1,4 +1,3 @@
-# docker run -v /Users/marcbachmann/Development/devirex/lipivir-website:/data -v /Users/marcbachmann/Development/suitart/ansible/templates/nginx/nginx.conf:/etc/nginx/nginx.conf-P --link fpm:fpm dockerfile/nginx
 FROM jmoati/php-fpm
 MAINTAINER Marc Bachmann <marc.bachmann@suitart.com>
 
