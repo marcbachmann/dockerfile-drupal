@@ -7,7 +7,7 @@ MAINTAINER Marc Bachmann <marc.bachmann@suitart.com>
 # apt-get install -y software-properties-common build-essential unzip curl wget git python
 
 RUN apt-get update -q && \
-    apt-get install -y software-properties-common python-software-properties nano
+    apt-get install -y software-properties-common python-software-properties drush mysql-client
     # software-properties-common build-essential unzip curl wget git python
 
 RUN \
