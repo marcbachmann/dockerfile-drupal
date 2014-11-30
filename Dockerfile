@@ -4,7 +4,7 @@ MAINTAINER Marc Bachmann <marc.brookman@gmail.com>
 # Install dependencies
 RUN apt-get update -q && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    software-properties-common python-software-properties python-setuptools drush curl mysql-client
+    software-properties-common python-software-properties python-setuptools curl mysql-client
 
 # Install supervisord
 RUN /usr/bin/easy_install supervisor supervisor-stdout
