@@ -17,10 +17,11 @@ RUN \
   apt-get install -y curl nginx && \
   chown -R www-data:www-data /var/lib/nginx
 
-EXPOSE 80
-CMD ["/start.sh"]
 ADD ./supervisord.conf /etc/supervisord.conf
 ADD ./nginx.conf /etc/nginx/nginx.conf
+
+EXPOSE 80
+CMD ["/start.sh"]
 
 RUN chmod +x /start.sh && \
     apt-get autoremove && \
