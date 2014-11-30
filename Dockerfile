@@ -1,28 +1,28 @@
 FROM jmoati/php-fpm
-MAINTAINER Marc Bachmann <marc.bachmann@suitart.com>
+MAINTAINER Marc Bachmann <marc.brookman@gmail.com>
 
-
-# To prevent front end warnings
-
-# apt-get install -y software-properties-common build-essential unzip curl wget git python
-
+# Install dependencies
 RUN apt-get update -q && \
-    apt-get install -y software-properties-common python-software-properties drush mysql-client
-    # software-properties-common build-essential unzip curl wget git python
+    DEBIAN_FRONTEND=noninteractive apt-get install -y \
+    software-properties-common python-software-properties python-setuptools drush curl mysql-client
 
+# Install supervisord
+RUN /usr/bin/easy_install supervisor supervisor-stdout
+ADD ./start.sh /start.sh
+
+# Install nginx
 RUN \
   add-apt-repository -y ppa:nginx/stable && \
   apt-get update && \
   apt-get install -y curl nginx && \
-  rm -rf /var/lib/apt/lists/* && \
-  echo "\ndaemon off;" >> /etc/nginx/nginx.conf && \
   chown -R www-data:www-data /var/lib/nginx
 
 EXPOSE 80
+CMD ["/start.sh"]
+ADD ./supervisord.conf /etc/supervisord.conf
 ADD ./nginx.conf /etc/nginx/nginx.conf
-ADD ./start /start
 
-RUN chmod +x /start && \
+RUN chmod +x /start.sh && \
     apt-get autoremove && \
     apt-get autoclean && \
     apt-get clean && \
